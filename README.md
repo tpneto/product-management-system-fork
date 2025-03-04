@@ -1,11 +1,11 @@
 # Product Management System
 
-## API
+## API (Backend)
 
 - .Net Core
 
 
-## APP
+## APP (Frontend)
 
 - Angular
 - ReactJS
@@ -21,6 +21,11 @@ dotnet --version
 ### List the templates
 ```shell
 dotnet new list
+```
+
+### Generate a webapi with the name "api"
+```shell
+dotnet new webapi -n api
 ```
 
 ### RUN .Net app
