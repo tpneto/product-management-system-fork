@@ -19,7 +19,7 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-
+//  http://localhost/
 app.MapGet("/", () =>
 {
     return "API is working";
@@ -27,6 +27,16 @@ app.MapGet("/", () =>
 .WithName("GetHome");
 
 
+//  http://localhost/tax/{price}/{tax}
+
+// {
+//     price: 0.00 (float/decimal)
+//     tax: "0%"
+//     final: price + tax (float/decimal)
+// }
+
+
+//  http://localhost/weatherforecast
 app.MapGet("/weatherforecast", () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
