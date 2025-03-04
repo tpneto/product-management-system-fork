@@ -47,3 +47,15 @@ dotnet run
 - Mobile App
 - Windows libraries 
 - ...
+
+
+## Docker 
+
+### APP
+```shell
+# Build
+
+docker build -t pms-test-nginx .  # you can choose any name
+docker run -p 8080:80 pms-test-nginx  # you can choose any port 8080, 8081 .. if the port 8080 is occupied
+
+```

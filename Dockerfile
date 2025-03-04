@@ -6,7 +6,6 @@ WORKDIR /app
 # I will copy the content of my app folder to inside image
 COPY ./app .
 
-
 FROM nginx:alpine
 # I will copy the content from builder stage to nginx public folder
 COPY --from=builder /app /usr/share/nginx/html
