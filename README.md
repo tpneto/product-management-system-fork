@@ -1,5 +1,7 @@
 # Product Management System
 
+*** DONT FORK THIS REPOSITORY**
+
 ## API (Backend)
 
 - .Net Core
