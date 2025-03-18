@@ -40,7 +40,7 @@ builder.Services.AddAuthorization(
     options => {
         options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
         options.AddPolicy("RequireUserRole", policy => policy.RequireRole("User"));
-        options.AddPolicy("RequireHumanResourcesRole", policy => policy.RequireRole("HumanResources"));
+        options.AddPolicy("Sales", policy => policy.RequireRole("Sales"));
         // ...
     }
 );
@@ -69,8 +69,8 @@ using (var scope = app.Services.CreateScope()){
         await roleManager.CreateAsync(new IdentityRole("Admin"));
     }
 
-    if(!(await roleManager.RoleExistsAsync("HumanResources"))){
-        await roleManager.CreateAsync(new IdentityRole("HumanResources"));
+    if(!(await roleManager.RoleExistsAsync("Sales"))){
+        await roleManager.CreateAsync(new IdentityRole("Sales"));
     }
 }
 
