@@ -8,6 +8,22 @@ using API.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin() 
+                   .AllowAnyMethod() 
+                   .AllowAnyHeader(); 
+        });
+});
+//
+
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connectionString));
@@ -56,6 +72,12 @@ builder.Services.AddSwaggerGen(); // API Documentation
 // ---
 
 var app = builder.Build();
+
+// CORS only in development mode
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors("AllowAllOrigins");
+}
 
 using (var scope = app.Services.CreateScope()){
 

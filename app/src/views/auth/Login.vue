@@ -6,18 +6,18 @@
                     <h3 class="text-center font-weight-light my-4">Login</h3>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form @submit.prevent="login">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                            <input v-model="email" class="form-control" id="inputEmail" type="email" placeholder="name@example.com" required/>
                             <label for="inputEmail">Email address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
+                            <input v-model="password" class="form-control" id="inputPassword" type="password" placeholder="Password" required/>
                             <label for="inputPassword">Password</label>
                         </div>
                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                             <a class="small" href="password.html">Forgot Password?</a>
-                            <a class="btn btn-primary" href="index.html">Login</a>
+                            <button class="btn btn-primary" type="submit" :disabled="isLoading">Login</button>
                         </div>
                     </form>
                 </div>
@@ -29,3 +29,43 @@
     </div>
 </template>
 
+<script>
+import  axios  from "axios";
+import { jwtDecode } from "jwt-decode";
+
+export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+            isLoading: false,
+            error: ''
+        }
+    },
+    methods: {
+        async login() {
+            this.isLoading = true;
+            this.error = '';
+
+            try {
+                const response = await axios.post(
+                    `${import.meta.env.VITE_API_URL}/auth/login`,
+                    {
+                        email: this.email,
+                        password: this.password
+                    }
+                );
+
+                const token = response.data.token;
+
+                localStorage.setItem('token', token);
+
+                this.$router.push('/');
+
+            } catch (error) {
+                
+            }
+        }
+    }
+}
+</script>
