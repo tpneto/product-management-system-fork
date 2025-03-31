@@ -1,0 +1,55 @@
+$primary-color: #3498db;
+$background-color: #f8f9fa;
+$text-color: #333;
+$border-radius: 8px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+.categories {
+  padding: 2rem;
+  background-color: $background-color;
+  min-height: 100vh;
+
+  .title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: $primary-color;
+  }
+
+  .loading,
+  .empty {
+    text-align: center;
+    font-size: 1.2rem;
+    color: $text-color;
+  }
+
+  .category-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+
+    .category-card {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+      transition: transform 0.2s, box-shadow 0.2s;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .category-name {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: $primary-color;
+      }
+
+      .category-description {
+        font-size: 1rem;
+        color: $text-color;
+      }
+    }
+  }
+}
