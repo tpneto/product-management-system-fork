@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using api.Models;
+
 namespace API.Data
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -6,9 +9,12 @@ namespace API.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
+        {         
+
 
         }
+
+        public DbSet<Product> Products { get; set; }
     }
 
 }
