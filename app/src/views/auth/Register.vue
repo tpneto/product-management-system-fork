@@ -45,15 +45,54 @@
                         </div>
                     </div>
                     <div class="mt-4 mb-0">
-                        <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a>
+                        <div class="d-grid"><a class="btn btn-primary btn-block" href="login">Create Account</a>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="card-footer text-center py-3">
-                <div class="small"><a href="login.html">Have an account? Go to login</a></div>
+                <div class="small"><a href="login">Have an account? Go to login</a></div>
             </div>
         </div>
     </div>
     </div>
 </template>
+
+
+<script>
+import  axios  from "axios";
+
+export default {
+    data() {
+        return {
+            // other fields
+            email: '',
+            password: '',
+            isLoading: false,
+            error: ''
+        }
+    },
+    methods: {
+        async register() {
+            this.isLoading = true;
+            this.error = '';
+
+            try {
+                const response = await axios.post(
+                    `${import.meta.env.VITE_API_URL}/auth/registration`,
+                    {
+                        // other fields
+                        email: this.email,
+                        password: this.password
+                    }
+                );
+
+                this.$router.push('/auth/login');
+
+            } catch (error) {
+                // add some exception
+            }
+        }
+    }
+}
+</script>
